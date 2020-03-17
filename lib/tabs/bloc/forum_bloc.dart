@@ -38,7 +38,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
   Stream<ForumState> _mapForumLoadToState(int category) async* {
     String page = "page=1&";
     String ord = "ord=asc&";
-    String categoryStr = "category[]=1&";
+    String categoryStr = "category[]=$category&";
     String limitStr = "limit=33";
     try {
       print("]-----] _mapForumLoadToState try [-----[");

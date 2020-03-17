@@ -16,12 +16,13 @@ class Apple extends StatefulWidget {
 class _AppleState extends State<Apple> {
   ForumBloc _forumBloc;
   List<Forum> _forum;
+  final int _categoryApple = 1;
 
   @override
   void initState() {
     super.initState();
     _forumBloc = BlocProvider.of<ForumBloc>(context);
-    _forumBloc.add(ForumLoad(category: 1));
+    _forumBloc.add(ForumLoad(category: _categoryApple));
   }
 
   @override
