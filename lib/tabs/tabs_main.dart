@@ -1,4 +1,5 @@
 import 'package:comento_homework/tabs/apple.dart';
+import 'package:comento_homework/tabs/apple_screen.dart';
 import 'package:comento_homework/tabs/banana.dart';
 import 'package:comento_homework/tabs/coconut.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _TabsMainState extends State<TabsMain>{
   }
 
   static List<Widget> _widgetOptions = <Widget>[
-    Apple(),
+    AppleScreen(),
     Banana(),
     Coconut(),
   ];
