@@ -10,6 +10,7 @@ class Forum extends Equatable {
   final String contents;
   final int category_id;
   final int user_id;
+  final String created_at;
 
   const Forum({
     this.id,
@@ -17,6 +18,7 @@ class Forum extends Equatable {
     this.contents,
     this.category_id,
     this.user_id,
+    this.created_at,
   });
 
   factory Forum.fromJson(Map<String, dynamic> json) => _$ForumFromJson(json);

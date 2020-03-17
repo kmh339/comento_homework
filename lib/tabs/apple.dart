@@ -70,7 +70,7 @@ class _AppleState extends State<Apple> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
-                                        Text("${_forum[index].category_id}"),
+                                        Text("Apple"),
                                         Text("${_forum[index].id}")
                                       ],
                                     ),
@@ -85,18 +85,20 @@ class _AppleState extends State<Apple> {
                                       children: <Widget>[
                                         Text("이메일"),
                                         Text("  |  "),
-                                        Text("작성일")
+                                        Text("${_forum[index].created_at}")
                                       ],
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(top: 10),
                                     ),
                                     Text(
-                                      "글제목",
+                                      "${_forum[index].title.length > 40 ? _forum[index].title.substring(0, 39) + "..." : _forum[index].title}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text("글내용")
+                                    Text(
+                                      "${_forum[index].contents.length > 60 ? _forum[index].contents.substring(0, 59) + "..." : _forum[index].contents}",
+                                    )
                                   ],
                                 ),
                               ),
