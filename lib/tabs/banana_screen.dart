@@ -16,7 +16,6 @@ class _BananaScreenState extends State<BananaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: BlocProvider<ForumBloc>(
         create: (context) => ForumBloc(),

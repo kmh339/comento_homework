@@ -16,7 +16,6 @@ class _AppleScreenState extends State<AppleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: BlocProvider<ForumBloc>(
         create: (context) => ForumBloc(),

@@ -12,14 +12,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _nickNameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         body: SafeArea(
           child: Form(
+              key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.only(
                     right: 30.0, left: 30.0, top: 30.0, bottom: 10),
@@ -29,6 +30,14 @@ class _LoginPageState extends State<LoginPage> {
                     TextFormField(
                       controller: _nickNameController,
                       decoration: InputDecoration(labelText: "닉네임", hintText: "입력해주세요."),
+                      validator: (value){
+                        if(value.isEmpty) {
+                          return "닉네임을 입력해주세요.";
+                        }else if(value.length > 12){
+                          return "닉네임이 너무 깁니다.";
+                        }
+                        else return null;
+                      },
                       autovalidate: true,
                       autocorrect: false,
                     ),
@@ -42,13 +51,16 @@ class _LoginPageState extends State<LoginPage> {
                         textColor: Colors.white,
                         color: Colors.green[300],
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return TabsMain();
-                              },
-                            ),
-                          );
+                          if(_formKey.currentState.validate()){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return TabsMain(nickName: _nickNameController.text.toString(),);
+                                },
+                              ),
+                            );
+                          }
+
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),

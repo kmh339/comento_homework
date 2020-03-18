@@ -1,5 +1,6 @@
 import 'package:comento_homework/model/forum.dart';
 import 'package:comento_homework/tabs/bloc/bloc.dart';
+import 'package:comento_homework/tabs/detail/banana_datail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,15 +42,12 @@ class _BananaState extends State<Banana> {
             _forum = state.forum;
             return Scaffold(
               body: Padding(
-                padding: EdgeInsets.only(top: 50, left: 20, right: 20),
+                padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                 child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          "???님 안녕하세요.",
-                          style: TextStyle(fontSize: 16),
-                        ),
+
                         Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
@@ -58,7 +56,13 @@ class _BananaState extends State<Banana> {
                               return Card(
                                   child: InkWell(
                                     splashColor: Colors.green.withAlpha(30),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) {
+                                            return BananaDetailScreen(id: _forum[index].id,);
+                                          }
+                                      ));
+                                    },
                                     child: Padding(
                                       padding: EdgeInsets.all(10),
                                       child: Container(

@@ -16,7 +16,6 @@ class _CoconutScreenState extends State<CoconutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: BlocProvider<ForumBloc>(
         create: (context) => ForumBloc(),

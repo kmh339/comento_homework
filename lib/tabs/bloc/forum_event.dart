@@ -21,3 +21,17 @@ class ForumLoad extends ForumEvent {
   @override
   String toString() => 'ForumLoad';
 }
+
+class DetailLoad extends ForumEvent {
+  final int id;
+
+  const DetailLoad({
+    @required this.id,
+});
+
+  @override
+  List<Object> get props => [id];
+
+  @override
+  String toString() => 'DetailLoad';
+}

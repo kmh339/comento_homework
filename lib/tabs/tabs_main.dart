@@ -1,3 +1,4 @@
+import 'package:comento_homework/main.dart';
 import 'package:comento_homework/tabs/apple_screen.dart';
 import 'package:comento_homework/tabs/banana_screen.dart';
 import 'package:comento_homework/tabs/coconut_screen.dart';
@@ -5,9 +6,14 @@ import 'package:flutter/material.dart';
 
 
 class TabsMain extends StatefulWidget {
+  final String _nickName;
+
     TabsMain({
       Key key,
-}) : super(key: key);
+      @required String nickName,
+}) : assert(nickName != null),
+    _nickName = nickName,
+          super(key: key);
 
     State<TabsMain> createState() => _TabsMainState();
 }
@@ -15,9 +21,12 @@ class TabsMain extends StatefulWidget {
 class _TabsMainState extends State<TabsMain>{
   int _selectedIndex = 0;
 
+  String get _nickName => widget._nickName;
+
   void _onItemTapped(int index) {
     setState(() {
       print(" _onItemTapped : $index");
+      print("_nickName : $_nickName");
       _selectedIndex = index;
     });
   }
@@ -60,9 +69,12 @@ class _TabsMainState extends State<TabsMain>{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.green,
+          title: Text("$_nickName 님 안녕하세요."),
+        ),
         body: Container(
           child: _widgetOptions[_selectedIndex],
         ),

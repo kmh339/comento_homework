@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:comento_homework/model/forum.dart';
+import 'package:comento_homework/model/reply.dart';
+import 'package:comento_homework/model/user.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:comento_homework/tabs/bloc/bloc.dart';
 import 'package:http/http.dart' as http;
@@ -32,6 +34,8 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
   Stream<ForumState> mapEventToState(ForumEvent event) async* {
     if (event is ForumLoad) {
       yield* _mapForumLoadToState(event.category);
+    } else if(event is DetailLoad) {
+      yield* _mapDetailLoadToState(event.id);
     }
   }
 
@@ -58,13 +62,38 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
     }
   }
 
+  Stream<ForumState> _mapDetailLoadToState(int id) async* {
+    String idString = "id=${id.toString()}";
+    try {
+      print("]-----] _mapDetailLoadToState try [-----[");
+
+      final response = await get("/api/view?" + idString);
+      if(response != null){
+        final Forum forum = Forum.fromJson(response['info']);
+        final replies = response['info']['reply'] as List;
+        final List<Reply> reply = replies.map((data) {
+          return Reply.fromJson(data);
+        }).toList();
+//        final users = response['info']['reply']['user'] as List;
+//        final List<User> user = users.map((data){
+//          return User.fromJson(data);
+//        }).toList();
+
+        yield ForumState.successLoadDetail(forum: forum, replies: reply);
+      }
+    } catch (error) {
+      print("]-----] _mapDetailLoadToState fail [-----[");
+      yield ForumState.failure();
+    }
+  }
+
   Future<dynamic> get(String url) async {
       print("get in future get url is ${apiUrl+url}");
       final response = await http.get(apiUrl + url);
       print("]-----] get:response [-----[ ${response.statusCode}");
       if (response.statusCode == 200 || response.statusCode == 500) {
         if (response.body != null) {
-          print("${json.decode(utf8.decode(response.bodyBytes))}");
+//          print("${json.decode(utf8.decode(response.bodyBytes))}");
           return json.decode(utf8.decode(response.bodyBytes));
         } else {
           return null;

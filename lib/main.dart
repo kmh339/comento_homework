@@ -14,9 +14,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
-      home: _login ? TabsMain() : LoginPage(),
+      home: _login ? TabsMain(nickName: "hi",) : LoginPage(),
     );
   }
 }
