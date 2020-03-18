@@ -1,5 +1,4 @@
 import 'package:comento_homework/login_page.dart';
-import 'package:comento_homework/tabs/apple.dart';
 import 'package:comento_homework/tabs/tabs_main.dart';
 import 'package:comento_homework/user_repository.dart';
 import 'package:flutter/material.dart';
