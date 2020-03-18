@@ -16,11 +16,7 @@ class UserRepository {
 
   Future<bool> isSignedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    String accessToken = prefs.getString('nickName');
-    if (accessToken != null) {
-      return true;
-    } else {
-      return false;
-    }
+    bool checkValue = prefs.containsKey('nickName');
+    return checkValue;
   }
 }

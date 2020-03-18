@@ -26,8 +26,9 @@ class _AppState extends State<App> {
     if (_login == null) {
       _login = false;
     }
-    _userRepository.isSignedIn().then((login) {
-      this._login = login;
+
+    _userRepository.isSignedIn().then((checkLogin) {
+      this._login = checkLogin;
     });
     _userRepository.getNickName().then((nickname) {
       this._nickName = nickname;

@@ -19,7 +19,7 @@ class _AppleState extends State<Apple> {
   ForumBloc _forumBloc;
   List<Forum> _forum;
   List<Ads> _ads;
-  final int _categoryApple = 1;
+  int _categoryApple = 1;
 
   @override
   void initState() {
