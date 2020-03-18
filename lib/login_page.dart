@@ -1,11 +1,18 @@
+import 'package:comento_homework/model/user.dart';
 import 'package:comento_homework/tabs/tabs_main.dart';
+import 'package:comento_homework/user_repository.dart';
 import 'package:flutter/material.dart';
 
 
 class LoginPage extends StatefulWidget {
+  final UserRepository _userRepository;
+
   LoginPage({
     Key key,
-  }) : super(key: key);
+    @required UserRepository userRepository,
+  }) : assert(userRepository != null),
+  _userRepository = userRepository,
+        super(key: key);
 
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -13,6 +20,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _nickNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  UserRepository get _userRepository => widget._userRepository;
+//  final UserRepository _userRepository = UserRepository();
 
   @override
   void dispose() {
@@ -57,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.green[300],
                         onPressed: () {
                           if(_formKey.currentState.validate()){
+                            _userRepository.persistNickName(_nickNameController.text);
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) {
