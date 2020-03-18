@@ -52,64 +52,69 @@ class _AppleState extends State<Apple> {
                         scrollDirection: Axis.vertical,
                         itemCount: _forum != null ? _forum.length : 0,
                         itemBuilder: (context, index) {
+                          print("$index");
                           return Card(
-                              child: InkWell(
-                            splashColor: Colors.green.withAlpha(30),
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) {
-                                  return AppleDetailScreen(id: _forum[index].id,);
-                                }
-                              ));
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Container(
-                                width: 300,
-                                height: 140,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text("Apple"),
-                                        Text("${_forum[index].id}")
-                                      ],
+                                  child: InkWell(
+                                    splashColor: Colors.green.withAlpha(30),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(builder: (context) {
+                                        return AppleDetailScreen(
+                                          id: _forum[index].id,
+                                        );
+                                      }));
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Container(
+                                        width: 300,
+                                        height: 140,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Text("Apple"),
+                                                Text("${_forum[index].id}")
+                                              ],
+                                            ),
+                                            Divider(
+                                              color: Colors.black38,
+                                              height: 10,
+                                              thickness: 0.7,
+                                              indent: 0,
+                                              endIndent: 0,
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
+                                                    "${_forum[index].created_at}")
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 10),
+                                            ),
+                                            Text(
+                                              "${_forum[index].title.length > 40 ? _forum[index].title.substring(0, 39) + "..." : _forum[index].title}",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              "${_forum[index].contents.length > 60 ? _forum[index].contents.substring(0, 59) + "..." : _forum[index].contents}",
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    Divider(
-                                      color: Colors.black38,
-                                      height: 10,
-                                      thickness: 0.7,
-                                      indent: 0,
-                                      endIndent: 0,
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-
-                                        Text("${_forum[index].created_at}")
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 10),
-                                    ),
-                                    Text(
-                                      "${_forum[index].title.length > 40 ? _forum[index].title.substring(0, 39) + "..." : _forum[index].title}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "${_forum[index].contents.length > 60 ? _forum[index].contents.substring(0, 59) + "..." : _forum[index].contents}",
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ));
+                                  ),
+                                );
                         },
                       ),
-                    )
+                    ),
                   ],
                 )),
               ),

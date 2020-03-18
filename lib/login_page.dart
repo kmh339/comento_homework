@@ -15,6 +15,11 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
@@ -52,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.green[300],
                         onPressed: () {
                           if(_formKey.currentState.validate()){
-                            Navigator.of(context).push(
+                            Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) {
                                   return TabsMain(nickName: _nickNameController.text.toString(),);

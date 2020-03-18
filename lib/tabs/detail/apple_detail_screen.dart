@@ -21,6 +21,16 @@ class _AppleDetailScreenState extends State<AppleDetailScreen> {
   int get _id => widget._id;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -37,4 +47,5 @@ class _AppleDetailScreenState extends State<AppleDetailScreen> {
       ),
     );
   }
+
 }
