@@ -1,3 +1,4 @@
+import 'package:comento_homework/model/ads.dart';
 import 'package:meta/meta.dart';
 import 'package:comento_homework/model/forum.dart';
 import 'package:comento_homework/model/reply.dart';
@@ -11,6 +12,7 @@ class ForumState {
   final List<Reply> reply;
   final List<User> user;
   final Forum forumDetail;
+  final List<Ads> ads;
 
   ForumState({
     @required this.isLoaded,
@@ -19,6 +21,7 @@ class ForumState {
     @required this.reply,
     @required this.user,
     @required this.forumDetail,
+    @required this.ads,
   });
 
   factory ForumState.emtpy() {
@@ -29,6 +32,7 @@ class ForumState {
       reply: null,
       user: null,
       forumDetail: null,
+      ads: null,
     );
   }
 
@@ -40,14 +44,16 @@ class ForumState {
       reply: null,
       user: null,
       forumDetail: null,
+      ads: null,
     );
   }
 
-  factory ForumState.success({List<Forum> forums}) {
+  factory ForumState.success({List<Forum> forums, List<Ads> ads}) {
     return ForumState(
       isLoaded: true,
       isLoading: false,
       forum: forums,
+      ads: ads,
     );
   }
 

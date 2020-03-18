@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:comento_homework/model/ads.dart';
 import 'package:comento_homework/model/forum.dart';
 import 'package:comento_homework/model/reply.dart';
 import 'package:comento_homework/model/user.dart';
@@ -48,13 +49,21 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
       print("]-----] _mapForumLoadToState try [-----[");
 
       final response = await get("/api/list?" + page + ord + categoryStr + limitStr);
-      if(response != null){
+      final responseAds = await get("/api/ads?page=1&limit=100");
+
+      if(response != null && responseAds != null){
         final contents = response['list']['data'] as List;
 //        print("${contents}");
         final List<Forum> forum = contents.map((data) {
           return Forum.fromJson(data);
         }).toList();
-        yield ForumState.success(forums: forum);
+
+        final contentsAds = responseAds['list']['data'] as List;
+        final List<Ads> ads = contentsAds.map((data) {
+          return Ads.fromJson(data);
+        }).toList();
+
+        yield ForumState.success(forums: forum, ads: ads);
       }
     } catch (error) {
       print("]-----] _mapForumLoadToState fail [-----[");

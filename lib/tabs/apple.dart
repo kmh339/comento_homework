@@ -1,3 +1,4 @@
+import 'package:comento_homework/model/ads.dart';
 import 'package:comento_homework/model/forum.dart';
 import 'package:comento_homework/tabs/bloc/bloc.dart';
 import 'package:comento_homework/tabs/detail/apple_detail_screen.dart';
@@ -17,6 +18,7 @@ class Apple extends StatefulWidget {
 class _AppleState extends State<Apple> {
   ForumBloc _forumBloc;
   List<Forum> _forum;
+  List<Ads> _ads;
   final int _categoryApple = 1;
 
   @override
@@ -33,6 +35,7 @@ class _AppleState extends State<Apple> {
         if (state.isLoaded) {
           setState(() {
             _forum = state.forum;
+            _ads = state.ads;
           });
         }
       },
@@ -40,6 +43,7 @@ class _AppleState extends State<Apple> {
         builder: (context, state) {
           if (state.isLoaded) {
             _forum = state.forum;
+            _ads = state.ads;
             return Scaffold(
               body: Padding(
                 padding: EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -132,7 +136,7 @@ class _AppleState extends State<Apple> {
                                             Row(
                                               children: <Widget>[
                                                 Image.network(
-                                                  "https://cdn.comento.kr/assignment/test2.jpg",
+                                                  "https://cdn.comento.kr/assignment/" + "${_ads[index].img}",
                                                   width: 100,
                                                 ),
                                                 Padding(
@@ -144,13 +148,13 @@ class _AppleState extends State<Apple> {
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Text(
-                                                        "${_forum[index].title.length > 30 ? _forum[index].title.substring(0, 29) + "..." : _forum[index].title}",
+                                                        "${_ads[index].title.length > 30 ? _ads[index].title.substring(0, 29) + "..." : _ads[index].title}",
                                                         style: TextStyle(
                                                             fontWeight:
                                                             FontWeight.bold),
                                                       ),
                                                       Text(
-                                                        "${_forum[index].contents.length > 60 ? _forum[index].contents.substring(0, 59) + "..." : _forum[index].contents}",
+                                                        "${_ads[index].contents.length > 60 ? _ads[index].contents.substring(0, 59) + "..." : _ads[index].contents}",
                                                       )
                                                     ],
                                                   ),
