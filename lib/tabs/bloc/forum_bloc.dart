@@ -44,7 +44,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
     String page = "page=1&";
     String ord = "ord=asc&";
     String categoryStr = "category[]=$category&";
-    String limitStr = "limit=10";
+    String limitStr = "limit=36";
     try {
       print("]-----] _mapForumLoadToState try [-----[");
 
